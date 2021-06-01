@@ -1,0 +1,24 @@
+LIBS:=`root-config --libs`
+INCS:=`root-config --cflags`
+
+eseguibile.10.3: programma.o vettore.o vettoreLineare.o rungeKutta.o Pendolo.o PendoloApp.o
+	g++ programma.o vettore.o vettoreLineare.o rungeKutta.o Pendolo.o PendoloApp.o -o eseguibile.10.3 ${INCS} ${LIBS}
+	
+programma.o: vettoreLineare.h programma.cpp rungeKutta.h Pendolo.h  PendoloApp.h
+	g++ -c programma.cpp ${INCS}
+	
+vettoreLineare.o: vettoreLineare.cpp vettoreLineare.h vettore.h
+	g++ -c vettoreLineare.cpp
+	
+vettore.o: vettore.cpp vettore.h
+	g++ -c vettore.cpp
+
+rungeKutta.o: rungeKutta.cpp rungeKutta.h equazioneDifferenzialeBase.h vettoreLineare.h
+	g++ -c rungeKutta.cpp
+	
+Pendolo.o: Pendolo.cpp Pendolo.h funzioneVettorialeBase.h vettoreLineare.h
+	g++ -c Pendolo.cpp
+	
+PendoloApp.o: PendoloApp.cpp PendoloApp.h funzioneVettorialeBase.h vettoreLineare.h
+	g++ -c PendoloApp.cpp
+	

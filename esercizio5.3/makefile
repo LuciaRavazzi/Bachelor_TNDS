@@ -1,0 +1,8 @@
+eseguibile.5.3:programma.o bisezione.o
+	g++ programma.o bisezione.o -o eseguibile.5.3
+
+programma.o:programma.cpp funzione.h funzioneBase.h solutore.h bisezione.h
+	g++ -c programma.cpp
+
+bisezione.o:bisezione.cpp bisezione.h solutore.h funzioneBase.h
+	g++ -c bisezione.cpp

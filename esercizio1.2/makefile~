@@ -1,0 +1,4 @@
+eseguibile.x: programma.o
+	g++ programma.o -o eseguibile.x
+programma.o: programma.cpp programma.h
+	g++ -c programma.cpp

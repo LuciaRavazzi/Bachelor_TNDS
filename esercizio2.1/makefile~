@@ -1,0 +1,10 @@
+compila: eseguibile.x
+
+eseguibile.x:main.o programma.o
+	g++ main.o programma.o -o eseguibile.x
+
+main.o: main.cpp programma.h
+	g++ -c main.cpp
+
+programma.o: programma.cpp programma.h
+	g++ -c programma.cpp

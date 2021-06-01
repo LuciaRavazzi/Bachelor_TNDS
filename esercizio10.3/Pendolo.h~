@@ -1,0 +1,20 @@
+#ifndef _PENDOLO_
+#define _PENDOLO_
+
+#include "funzioneVettorialeBase.h"
+#include "vettoreLineare.h"
+
+class pendolo: public funzioneVettorialeBase{
+	public:
+		pendolo(double omega){_omega=omega;}
+		vettoreLineare eval(const vettoreLineare &,double t) const;
+		
+
+	private:
+		double _omega;
+
+};
+
+
+
+#endif

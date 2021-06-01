@@ -1,0 +1,33 @@
+#ifndef _IPERSFERA_
+#define _IPERSFERA_
+
+class ipersfera{
+	public:
+	ipersfera(int nDim, double raggio){ _nDim=nDim; _raggio=raggio;}
+	
+	int DentroOFuori(double* vett,int N){
+		double accu=0;
+
+			for(int i=0; i<N; i++){
+				accu+=vett[i]*vett[i];
+	
+				if(sqrt(accu)<=_raggio){
+					return 1;
+				} else {
+					return 0;
+				}				
+			
+			}
+		}
+	
+
+	int GetDim() const {return _nDim;}
+
+	private:
+	double _raggio;
+	int _nDim;
+};
+
+
+
+#endif

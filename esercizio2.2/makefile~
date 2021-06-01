@@ -1,0 +1,12 @@
+
+eseguibile.2.2: programma.o definizioni.o selectionSort.o
+	g++ programma.o definizioni.o selectionSort.o -o eseguibile.2.2 
+	
+programma.o: programma.cpp dichiarazioni.h
+	g++ -c programma.cpp -o programma.o 
+	
+definizioni.o: definizioni.cpp dichiarazioni.h
+	g++ -c definizioni.cpp
+
+selectionSort.o: selectionSort.cpp selectionSort.h
+	g++ -c selectionSort.cpp

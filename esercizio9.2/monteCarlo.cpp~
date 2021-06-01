@@ -1,0 +1,34 @@
+#include "monteCarlo.h"
+#include <iostream>
+
+using namespace std;
+
+monteCarlo::monteCarlo(double a,double b){
+	_a=a;
+	_b=b;
+	_rand=new random(3);
+}
+
+
+
+double monteCarlo::HitOrMiss(int N,ipersfera _iper) const{
+	double* vett=new double[_iper.GetDim()];
+	double Nint=0;
+ 	
+	for(int i=0; i<N; i++){
+		for(int j=0;j<3;j++){
+			vett[j]=_a+(_b-_a)*_rand->uniforme();	
+		}
+	
+			if(_iper.DentroOFuori(vett,_iper.GetDim())==1){
+				Nint++;	
+				cout << "Nint: " << Nint << endl;
+			}
+	}
+		
+	
+
+return (4./3.)*3.1415*(double) Nint/N;
+}
+
+

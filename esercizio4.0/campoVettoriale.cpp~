@@ -1,0 +1,28 @@
+#include "campoVettoriale.h"
+
+
+campoVettoriale::campoVettoriale(const posizione&){
+	_Fx=0;
+	_Fy=0;
+	_Fz=0;
+}
+
+campoVettoriale::campoVettoriale(const posizione&,double x,double y,double z):posizione(x,y,z){
+	_Fx=0;
+	_Fy=0;
+	_Fz=0;
+}	
+
+		
+double campoVettoriale::modulo() const{
+	return _Fx*_Fx+_Fy*_Fy+_Fz*_Fz;
+}
+
+
+void campoVettoriale::somma(const campoVettoriale& camp){
+	_Fx=_Fx+camp.getFx();	
+	_Fy=_Fy+camp.getFy();	
+	_Fz=_Fz+camp.getFz();	
+}
+
+

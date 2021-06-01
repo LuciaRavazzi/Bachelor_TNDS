@@ -1,0 +1,10 @@
+make: eseguibile.x
+
+eseguibile.x:programma.o posizione.o
+	g++ programma.o posizione.o -o eseguibile.x
+
+programma.o: programma.cpp posizione.h
+	g++ -c programma.cpp
+
+posizione.o: posizione.cpp posizione.h
+	g++ -c posizione.cpp

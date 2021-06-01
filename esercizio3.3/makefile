@@ -1,0 +1,8 @@
+eseguibile.3.3:programma.o corpoCeleste.o posizione.o
+	g++ programma.o corpoCeleste.o posizione.o -o eseguibile.3.3
+programma.o:programma.cpp corpoCeleste.h posizione.h
+	g++ -c programma.cpp
+corpoCeleste.o:corpoCeleste.cpp corpoCeleste.h posizione.h particella.h
+	g++ -c corpoCeleste.cpp
+posizione.o:posizione.h posizione.cpp
+	g++ -c posizione.cpp

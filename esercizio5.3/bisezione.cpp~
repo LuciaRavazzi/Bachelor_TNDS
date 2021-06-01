@@ -1,0 +1,59 @@
+#include "bisezione.h"
+#include <iostream>
+using namespace std;
+
+bisezione::bisezione(double a,double b,double prec,double Nmax,funzioneBase* f){
+	if(b>a){ 
+		_a=a;
+		_b=b;
+	} else {
+		_a=b;
+		_b=a;
+	}
+
+	_prec=prec;
+	_f=f;
+	_Nmax=Nmax;
+}
+	
+	
+double bisezione::segno(double x) const{
+	if(x>0) 
+		return 1;
+	if(x<0)
+		return -1;
+}
+
+double bisezione::cercaZeri(){
+	int counter=0;
+	double xm=_a+(float) (_b-_a)/2;
+	double prec;
+
+	do{
+	if(segno(_f->eval(xm))*segno(_f->eval(_b))<0){
+			_a=xm;
+		} else {
+			_b=xm;
+	}
+		
+	xm=_a+(float)(_b-_a)/2;
+	prec=(float) (_b-_a)/2;
+	counter++;
+	
+	if(counter>_Nmax)
+		break;
+	
+	} while(prec>_prec);
+
+return xm;
+}
+
+
+
+
+	
+		
+
+
+
+

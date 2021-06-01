@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main() {
+	ifstream filein;
+	int N;
+	char nomefile[100];
+
+	filein.open("dati.dat");
+	//controllo se il file è stato aperto correttamente
+	if(filein.fail()){
+		cerr << "Errore apertura file" << endl;
+		cout << "Inserire nome file:" << endl;
+		cin >> nomefile;
+		filein.open(nomefile);
+	}
+
+	filein >> N;
+	int* vett=new int[N];
+	for(int i=0; i<N; i++){
+		filein >> vett[i];
+		cout << vett[i] << endl;
+	}
+
+	filein.close();	
+	
+
+return 0;
+}

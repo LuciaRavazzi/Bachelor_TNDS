@@ -1,0 +1,13 @@
+LIBS:=`root-config --libs`
+INCS:=`root-config --cflags`
+
+compila: eseguibile.x
+
+eseguibile.x: random.o programma.o
+	g++ random.o programma.o -o eseguibile.x ${INCS} ${LIBS}
+	
+random.o: random.cpp random.h
+	g++ -c random.cpp
+
+programma.o: programma.cpp random.h
+	g++ -c programma.cpp ${INCS}

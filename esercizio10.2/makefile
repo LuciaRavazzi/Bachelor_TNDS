@@ -1,0 +1,24 @@
+LIBS:=`root-config --libs`
+INCS:=`root-config --cflags`
+
+
+eseguibile.10.2: programma.o vettore.o vettoreLineare.o rungeKutta.o oscillatoreArmonico.o eulero.o
+	g++ programma.o vettore.o vettoreLineare.o rungeKutta.o oscillatoreArmonico.o eulero.o -o eseguibile.10.2 ${INCS} ${LIBS}
+	
+programma.o: vettoreLineare.h programma.cpp rungeKutta.h oscillatoreArmonico.h 
+	g++ -c programma.cpp ${INCS}
+	
+vettoreLineare.o: vettoreLineare.cpp vettoreLineare.h vettore.h
+	g++ -c vettoreLineare.cpp
+	
+vettore.o: vettore.cpp vettore.h
+	g++ -c vettore.cpp
+
+rungeKutta.o: rungeKutta.cpp rungeKutta.h equazioneDifferenzialeBase.h vettoreLineare.h
+	g++ -c rungeKutta.cpp
+	
+oscillatoreArmonico.o: oscillatoreArmonico.cpp oscillatoreArmonico.h funzioneVettorialeBase.h vettoreLineare.h
+	g++ -c oscillatoreArmonico.cpp
+	
+eulero.o:eulero.cpp eulero.h equazioneDifferenzialeBase.h funzioneVettorialeBase.h vettoreLineare.h
+	g++ -c eulero.cpp

@@ -1,0 +1,19 @@
+#ifndef _MONTECARLO_
+#define _MONTECARLO_
+
+#include "random.h"
+#include "ipersfera.h"
+
+class monteCarlo{
+	public:
+	monteCarlo(double a,double b);
+
+	double HitOrMiss(int N) const;
+
+	private:
+	double _a;
+	double _b;
+	random *_rand;
+};
+
+#endif

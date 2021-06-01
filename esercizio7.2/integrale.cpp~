@@ -1,0 +1,95 @@
+#include "integrale.h"
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+integrale::integrale(double a,double b,funzioneBase *f){
+	if(a<b){
+		_a=a;
+		_b=b;
+	} else {
+		_a=b;
+		_b=a;
+	}	
+		
+	_f=f;
+}
+
+
+integrale::integrale(double a,double b,funzioneBase *f,double prec){
+		if(a<b){
+		_a=a;
+		_b=b;
+	} else {
+		_a=b;
+		_b=a;
+	}	
+		
+	_f=f;
+	_prec=prec;
+}
+		
+
+double integrale::midpoint(int nsteps){
+	double _h=(_b-_a)/nsteps;
+	double x;
+	double sum=0.;
+
+	for(int i=0; i<nsteps; i++){
+		x=_a+_h*(i+0.5);
+		sum+=_f->eval(x);
+	}
+
+return sum*_h;
+}	
+
+
+double integrale::simpson(int nsteps){
+	double h=(_b-_a)/nsteps;
+	double sum=(double(1/3))*(_f->eval(_a)+_f->eval(_b));
+	double x;
+	if(nsteps%2!=0){
+		cerr << "Errore. Il numero di passi deve essere pari.Rivalutare l'integrale" << endl;
+		return -4.;
+	} else {
+		for(int i=1; i<nsteps; i++){
+			x=_a+i*h;
+				if(i%2!=0){
+					sum+=(4./3.)*_f->eval(x);
+				} else {
+					sum+=(2./3.)*_f->eval(x);
+				}
+		}
+	}		
+		
+return sum*h;
+}		
+
+
+
+double integrale::trapezoidiPrec(){
+	double I1=0;
+	double I2=0;
+	double sum=0;
+	int nsteps=2;
+
+	sum=0.5*(_f->eval(_a)*_f->eval(_b));
+
+	do{
+		I1=I2;
+		for(int k=1; k<nsteps; k=k+2)
+			sum=sum+_f->eval(_a+((double)(_b-_a)/nsteps)*k);
+			
+		
+
+		I2=sum*(double)(_b-_a)/nsteps;
+		nsteps*=2; 
+	} while((4./3.)*fabs(I1-I2)>_prec);
+
+return I2;
+}
+
+
+	
+
